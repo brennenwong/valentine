@@ -1,14 +1,13 @@
 const messages = [
     "Are you sure?",
     "Really sure??",
-    "Are you positive?",
-    "Pookie please...",
-    "Just think about it!",
+    "Are you really, really sure?",
+    "You wouldn't say no again...",
+    "You can take some time to think about it!",
     "If you say no, I will be really sad...",
-    "I will be very sad...",
-    "I will be very very very sad...",
+    "Please click Yes ):",
     "Ok fine, I will stop asking...",
-    "Just kidding, say yes please! ❤️"
+    "I'll buy you cheesecake if you say yes!"
 ];
 
 let messageIndex = 0;
@@ -41,9 +40,13 @@ function handleNoClick() {
     let isOverlapping;
 
     do {
-        // Generate random position
-        randomX = Math.random() * (viewportWidth - buttonWidth);
-        randomY = Math.random() * (viewportHeight - buttonHeight);
+        // Generate random position within 80% of the viewport dimensions
+        randomX = Math.random() * (viewportWidth * 0.6 - buttonWidth);
+        randomY = Math.random() * (viewportHeight * 0.6 - buttonHeight);
+
+        // Ensure the button stays within the viewport
+        randomX = Math.max(0, Math.min(randomX, viewportWidth * 0.6 - buttonWidth));
+        randomY = Math.max(0, Math.min(randomY, viewportHeight * 0.6 - buttonHeight));
 
         // Check if button overlaps with gif container
         isOverlapping = (
@@ -59,7 +62,6 @@ function handleNoClick() {
     noButton.style.left = `${randomX}px`;
     noButton.style.top = `${randomY}px`;
 }
-
 
 function handleYesClick() {
     window.location.href = "yes_page.html";
